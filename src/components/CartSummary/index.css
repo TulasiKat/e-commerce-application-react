@@ -1,0 +1,23 @@
+/* Write your CSS here */
+.checkout-button {
+  border-radius: 8px;
+  border: none;
+  padding: 15px;
+  color: white;
+  font-weight: 600;
+  background-color: #0b69ff;
+  width: 90%;
+}
+.summary-heading {
+  font-size: 18px;
+  color: #616e7c;
+}
+.summary-price {
+  color: #171f46;
+  font-weight: bold;
+}
+.summary-para {
+  color: #616e7c;
+  font-size: 14px;
+  font-weight: 500;
+}
