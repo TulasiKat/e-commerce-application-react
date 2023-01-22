@@ -21,20 +21,27 @@ class App extends Component {
 
   addCartItem = product => {
     const {cartList} = this.state
-    const presentCartItem = cartList.filter(each => each.id === product.id)
+    const productObject = cartList.find(
+      eachCartItem => eachCartItem.id === product.id,
+    )
 
-    if (presentCartItem.length === 0) {
-      this.setState(prevState => ({cartList: [...prevState.cartList, product]}))
+    if (productObject) {
+      this.setState(prevState => ({
+        cartList: prevState.cartList.map(eachCartItem => {
+          if (productObject.id === eachCartItem.id) {
+            const updatedQuantity = eachCartItem.quantity + product.quantity
+
+            return {...eachCartItem, quantity: updatedQuantity}
+          }
+
+          return eachCartItem
+        }),
+      }))
     } else {
-      const updatedCartList = cartList.map(each => {
-        if (each.id === product.id) {
-          return {...each, quantity: each.quantity + 1}
-        }
-        return {...each}
-      })
-      this.setState({cartList: [...updatedCartList]})
+      const updatedCartList = [...cartList, product]
+
+      this.setState({cartList: updatedCartList})
     }
-    //   TODO: Update the code here to implement addCartItem
   }
 
   decrementCartItemQuantity = id => {
@@ -78,7 +85,7 @@ class App extends Component {
 
   render() {
     const {cartList} = this.state
-
+    console.log(cartList)
     return (
       <CartContext.Provider
         value={{

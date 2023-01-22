@@ -115,6 +115,7 @@ class ProductItemDetails extends Component {
     <CartContext.Consumer>
       {value => {
         const {productData, quantity, similarProductsData} = this.state
+        console.log(quantity)
         const {
           availability,
           brand,
